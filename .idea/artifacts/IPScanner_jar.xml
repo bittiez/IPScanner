@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IPScanner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IPScanner_jar</output-path>
+    <root id="archive" name="IPScanner.jar">
+      <element id="module-output" name="IPScanner" />
+    </root>
+  </artifact>
+</component>
