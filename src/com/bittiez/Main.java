@@ -21,7 +21,7 @@ public class Main {
             InetAddress IA;
             ArrayList<Thread> threads = new ArrayList<Thread>();
 
-            print(InetAddress.getLocalHost().getHostAddress() + "[" + InetAddress.getLocalHost().getHostName() + "]");
+            //print(InetAddress.getLocalHost().getHostAddress() + "[" + InetAddress.getLocalHost().getHostName() + "]");
 
             while(i < 255){
                 for (int j = 0; j < 10; j++) {
@@ -42,7 +42,7 @@ public class Main {
 
 
         } catch (Exception e){
-            print(e.toString());
+            //print(e.toString());
         }
     }
 
