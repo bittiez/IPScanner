@@ -9,15 +9,19 @@ import java.net.InetAddress;
 public class reachableThread implements Runnable {
     public InetAddress IA;
     int timeout = 0;
-    public reachableThread(InetAddress _IA, int _timeout){
+    ListEm le = null;
+    public reachableThread(InetAddress _IA, int _timeout, ListEm _le){
         IA = _IA;
         timeout = _timeout;
+        le = _le;
     }
     @Override
     public void run() {
         try {
             if (IA.isReachable(timeout)) {
-                Main.print(IA.getHostAddress() + " [" + IA.getHostName() + "]");
+                String e = IA.getHostAddress() + " [" + IA.getHostName() + "]";
+                Main.print(e);
+                le.AddItem(e);
             }
         } catch (IOException e) {
             e.printStackTrace();
