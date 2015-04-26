@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="IPScanner">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/IPScanner_jar/IPScanner.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
