@@ -12,15 +12,16 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by tad on 4/26/2015.
  */
-public class pingerThread implements Runnable {
+public class PingerThread implements Runnable {
     public ListEm le;
-    public pingerThread(ListEm le){
+    public PingerThread(ListEm le){
         this.le = le;
     }
 
     @Override
     public void run() {
-        int timeout = 5000;
+        long startTime = System.currentTimeMillis();
+
         int MaxIP = 254;
         String iAdd = null;
         try {
@@ -32,7 +33,8 @@ public class pingerThread implements Runnable {
 
         ArrayList<IP> ips = new ArrayList<>();
         ArrayList<FutureTask> fts = new ArrayList<>();
-        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()*3);
+        Main.print(String.valueOf(Runtime.getRuntime().availableProcessors()));
         for (int j = 0; j <= MaxIP; j++) {
             try {
                 ips.add(new IP(InetAddress.getByName(subnet + "." + j), le));
@@ -43,27 +45,6 @@ public class pingerThread implements Runnable {
             }
         }
 
-
-
-
-
-//        while(i <= MaxIP){
-//            executorService.submit(new Runnable() {
-//                public void run() {
-//                    try {
-//                        InetAddress IA = InetAddress.getByName(subnet + "." + i);
-//                        if (IA.isReachable(timeout)) {
-//                            String e = IA.getHostAddress() + " [" + IA.getHostName() + "]";
-//                            Main.print(e);
-//                            le.AddItem(e);
-//                        }
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//        }
-
         executor.shutdown();
         try {
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
@@ -71,7 +52,7 @@ public class pingerThread implements Runnable {
 
         }
 
-        le.Finished();
-        //executorService.shutdown();
+        long totalTime = System.currentTimeMillis() - startTime;
+        le.Finished(totalTime);
     }
 }

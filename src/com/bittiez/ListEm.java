@@ -23,8 +23,7 @@ public class ListEm {
 
         Status.setText("Searching...");
 
-        Thread n = new Thread(new mainThread(this));
-        n.start();
+        new Thread(new PingerThread(this)).start();
 
         MainPanel.setLayout(new GridLayout(0, 1));
         frame.setPreferredSize(new Dimension(250, 500));
@@ -39,7 +38,9 @@ public class ListEm {
         MainPanel.updateUI();
     }
 
-    public void Finished(){
-        Status.setText("Finished Searching.");
+    public void Finished(long time){
+        TimeSpan ts = new TimeSpan(time);
+        String elapsedTime = ts.hours + ":" + ts.minutes + ":" + ts.seconds + "." + ts.milliseconds;
+        Status.setText("Finished Searching("+elapsedTime+").");
     }
 }
